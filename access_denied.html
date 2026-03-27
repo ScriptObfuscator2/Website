@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Access Restricted</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+  body {
+    margin: 0;
+    height: 100vh;
+
+    background: 
+      radial-gradient(circle at center, rgba(0,0,0,0.7) 0%, rgba(2,6,23,0.9) 100%),
+      url("https://raw.githubusercontent.com/ScriptObfuscator2/Website/refs/heads/main/Dark%20Theme%20With%20Light%20Bulb.jpeg");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    color: #e2e8f0;
+    font-family: "Courier New", monospace;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  .container {
+    text-align: center;
+    border: 1px solid #334155;
+    padding: 40px;
+    border-radius: 12px;
+    background: rgba(15, 23, 42, 0.8);
+    box-shadow: 0 0 40px rgba(0,0,0,0.8);
+    max-width: 420px;
+  }
+
+  h1 {
+    color: #ef4444;
+    font-size: 24px;
+    margin-bottom: 15px;
+  }
+
+  p {
+    font-size: 13px;
+    color: #94a3b8;
+    margin: 6px 0;
+  }
+
+  .glitch {
+    font-size: 48px;
+    color: #ef4444;
+    animation: glitch 1s infinite;
+  }
+
+  @keyframes glitch {
+    0% { text-shadow: 2px 0 red; }
+    20% { text-shadow: -2px 0 blue; }
+    40% { text-shadow: 2px 2px red; }
+    60% { text-shadow: -2px -2px blue; }
+    80% { text-shadow: 2px -2px red; }
+    100% { text-shadow: none; }
+  }
+</style>
+</head>
+
+<body>
+
+<div class="container">
+  <div class="glitch">⚠</div>
+  <h1>ACCESS DENIED</h1>
+
+  <p>This script is protected by</p>
+  <p>Encrypt X</p>
+</div>
+
+</body>
+</html>
