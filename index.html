@@ -58,6 +58,73 @@
     outline: none;
   }
 
+  /* SWITCH AREA */
+  .switch-container {
+    margin-top: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+    font-size: 13px;
+    color: #cbd5f5;
+  }
+
+  .switch {
+    position: relative;
+    width: 40px;
+    height: 20px;
+  }
+
+  .switch input {
+    display: none;
+  }
+
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    inset: 0;
+    background-color: #334155;
+    border-radius: 20px;
+    transition: 0.3s;
+  }
+
+  .slider:before {
+    content: "";
+    position: absolute;
+    height: 16px;
+    width: 16px;
+    left: 2px;
+    top: 2px;
+    background-color: white;
+    border-radius: 50%;
+    transition: 0.3s;
+  }
+
+  input:checked + .slider {
+    background-color: #ef4444;
+  }
+
+  input:checked + .slider:before {
+    transform: translateX(20px);
+  }
+
+  /* KEY INPUT (hidden by default) */
+  .key-input {
+    margin-top: 10px;
+    display: none;
+  }
+
+  .key-input input {
+    width: 90%;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #334155;
+    background: rgba(2,6,23,0.9);
+    color: #e2e8f0;
+    outline: none;
+    font-size: 13px;
+  }
+
   button {
     margin-top: 15px;
     width: 100%;
@@ -81,14 +148,12 @@
     color: #94a3b8;
   }
 
-  /* FIXED BOTTOM DATE */
   .date {
     position: fixed;
     bottom: 10px;
     left: 0;
     width: 100%;
     text-align: center;
-
     font-size: 10px;
     color: #64748b;
     pointer-events: none;
@@ -104,6 +169,20 @@
 
   <textarea placeholder="Paste your script here..."></textarea>
 
+  <!-- SWITCH FIRST -->
+  <div class="switch-container">
+    <label class="switch">
+      <input type="checkbox" id="keyToggle" onchange="toggleKeyBox()">
+      <span class="slider"></span>
+    </label>
+    <span>Key (Enable Access)</span>
+  </div>
+
+  <!-- KEY INPUT -->
+  <div class="key-input" id="keyBox">
+    <input type="text" placeholder="Enter your access key...">
+  </div>
+
   <button onclick="alert('Obfuscation feature not connected yet')">
     Obfuscate
   </button>
@@ -114,10 +193,18 @@
 
 </div>
 
-<!-- FIXED BOTTOM -->
 <div class="date">
   Published: March 27, 2026
 </div>
+
+<script>
+function toggleKeyBox() {
+  const toggle = document.getElementById("keyToggle");
+  const box = document.getElementById("keyBox");
+
+  box.style.display = toggle.checked ? "block" : "none";
+}
+</script>
 
 </body>
 </html>
