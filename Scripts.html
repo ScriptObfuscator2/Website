@@ -93,7 +93,17 @@
 <script>
   const params = new URLSearchParams(window.location.search);
   const id = params.get("Id");
-  alert(id);
+  try {
+    const res = await fetch(`https://raw.githubusercontent.com/ScriptObfuscator2/Scripts/refs/heads/main/${id}`);
+    if (res.ok) {
+      const json = await res.json();
+      if (json & json.auth) {
+        window.location.replace(`https://encrypt-x.pages.dev/Access?Id=${id}`);
+      }
+    }
+  } catch (err) {
+    console.log("ERROR:", err);
+  }
 </script>
 
 <div class="container">
