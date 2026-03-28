@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Encrypt X - Access Key</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+  body {
+    margin: 20;
+    min-height: 100vh;
+
+    background:
+      radial-gradient(circle at center, rgba(0,0,0,0.75) 0%, rgba(2,6,23,0.95) 100%),
+      url("https://raw.githubusercontent.com/ScriptObfuscator2/Website/refs/heads/main/Dark%20Theme%20With%20Light%20Bulb.jpeg");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    font-family: "Courier New", monospace;
+    color: #e2e8f0;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    padding: 20px;
+    box-sizing: border-box;
+  }
+
+  .container {
+    width: min(90%, 420px);
+    background: rgba(15, 23, 42, 0.85);
+    border: 2px solid #334155;
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: 0 0 40px rgba(0,0,0,0.8);
+    text-align: center;
+  }
+
+  h1 {
+    font-size: 18px;
+    color: #ef4444;
+    margin-bottom: 20px;
+  }
+
+  .subtitle {
+    font-size: 12px;
+    color: #94a3b8;
+    margin-bottom: 20px;
+  }
+
+  input {
+    width: 90%;
+    padding: 12px;
+    background: rgba(2,6,23,0.9);
+    border: 1px solid #334155;
+    border-radius: 8px;
+    color: #e2e8f0;
+    font-size: 13px;
+    outline: none;
+  }
+
+  button {
+    margin-top: 15px;
+    width: 100%;
+    padding: 12px;
+    background: #ef4444;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+    transition: 0.2s;
+  }
+
+  button:hover {
+    background: #dc2626;
+  }
+
+  .footer {
+    margin-top: 15px;
+    font-size: 11px;
+    color: #94a3b8;
+  }
+
+  /* BELOW FRAME TEXT */
+  .below-text {
+    margin-top: 15px;
+    font-size: 12px;
+    color: #94a3b8;
+    text-align: center;
+  }
+
+  .below-text a {
+    color: #38bdf8;
+    text-decoration: none;
+  }
+
+  .below-text a:hover {
+    text-decoration: underline;
+  }
+
+  .date {
+    position: fixed;
+    bottom: 10px;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    font-size: 10px;
+    color: #64748b;
+    pointer-events: none;
+  }
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <h1>Access Key Required</h1>
+
+  <div class="subtitle">
+    This script is protected by 
+    Encrypt X Enter your key to unlock this script
+  </div>
+
+  <input type="text" id="keyInput" placeholder="Enter access key...">
+
+  <button onclick="checkKey()">
+    Unlock
+  </button>
+
+  <div class="footer">
+    Encrypt X Secure Access System
+  </div>
+
+</div>
+
+<!-- BELOW FRAME -->
+<div class="below-text">
+  Do you want to obfuscate your script?
+  <a href="https://encrypt-x.pages.dev/" target="_blank">
+    Click here
+  </a>
+</div>
+
+<div class="date">
+  Published: March 27, 2026
+</div>
+
+<script>
+function checkKey() {
+  const key = document.getElementById("keyInput").value;
+
+  if (!key) {
+    alert("Please enter a key");
+    return;
+  }
+
+  if (key === "1234") {
+    alert("Access Granted");
+  } else {
+    alert("Invalid Key");
+  }
+}
+</script>
+
+</body>
+</html>
