@@ -58,7 +58,6 @@
     outline: none;
   }
 
-  /* SWITCH AREA */
   .switch-container {
     margin-top: 15px;
     display: flex;
@@ -108,7 +107,6 @@
     transform: translateX(20px);
   }
 
-  /* KEY INPUT (hidden by default) */
   .key-input {
     margin-top: 10px;
     display: none;
@@ -169,7 +167,6 @@
 
   <textarea placeholder="Paste your script here..."></textarea>
 
-  <!-- SWITCH FIRST -->
   <div class="switch-container">
     <label class="switch">
       <input type="checkbox" id="keyToggle" onchange="toggleKeyBox()">
@@ -178,9 +175,8 @@
     <span>Key (Enable Access)</span>
   </div>
 
-  <!-- KEY INPUT -->
   <div class="key-input" id="keyBox">
-    <input type="text" placeholder="Enter your access key...">
+    <input type="text" maxlength="32" placeholder="Enter your access key...">
   </div>
 
   <button onclick="alert('Obfuscation feature not connected yet')">
