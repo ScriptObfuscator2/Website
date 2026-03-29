@@ -203,22 +203,30 @@ function toggleKeyBox() {
 }
 
 function obfuscate() {
-  const script = document.getElementById("scriptBox").value;
-  const key = document.getElementById("keyInput").value;
+  const script = document.getElementById("scriptBox");
+  const key = document.getElementById("keyInput");
+  const button = document.querySelector("button");
+  const toggle = document.getElementById("keyToggle");
+  
+  console.log("Script:", script.value);
+  console.log("Key:", key.value);
 
-  console.log("Script:", script);
-  console.log("Key:", key);
-
-  if (!script) {
+  if (!script.value) {
     alert("Script is empty");
     return;
   }
 
-  if (document.getElementById("keyToggle").checked && !key) {
+  if (document.getElementById("keyToggle").checked && !key.value) {
     alert("Key is required");
     return;
   }
 
+  // 🔒 DISABLE ALL INPUTS
+  scriptBox.disabled = true;
+  keyInput.disabled = true;
+  button.disabled = true;
+  toggle.disabled = true;
+  
   alert("Processing...");
 }
 </script>
