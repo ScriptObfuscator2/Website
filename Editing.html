@@ -146,13 +146,20 @@ async function GetScriptData(id) {
 
 (async () => {
   const params = new URLSearchParams(window.location.search);
-  currentId = params.get("Id");
-  if (!currentId) return;
+  const currentId = params.get("Id");
+  const key = params.get("auth");
+  if (!currentId || !key) return;
   try {
     const json = await GetScriptData(currentId);
     // Detect if Id is not accessable
     if (json && !json.auth) {
       window.location.replace(`https://encrypt-x.pages.dev/Scripts?Id=${currentId}`);
+    }
+    const res = await fetch(`https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(`https://encrypt-x.scriptobfuscator2.workers.dev/check?Id=${currentId}&auth=${key}`)}`);
+    const json2 = await res.json();
+    if (json2.correct === true) {
+      document.getElementById("keyInput").value = json.auth;
+      document.getElementById("code").value = json.Script;
     }
   } catch (err) {
     console.log("ERROR:", err);
