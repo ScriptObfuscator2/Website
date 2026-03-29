@@ -192,11 +192,7 @@ async function checkKey() {
     const result = await res.text();
 
     if (result.trim() === "true") {
-      alert("Access Granted");
-
-      // 🔥 REDIRECT
       window.location.replace(`https://encrypt-x.pages.dev/Editing?Id=${currentId}&auth=${key}`);
-
     } else {
       alert("Invalid Key");
     }
