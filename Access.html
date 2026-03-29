@@ -149,7 +149,7 @@ let currentId = null;
 (async () => {
   const params = new URLSearchParams(window.location.search);
   currentId = params.get("Id");
-
+  
   if (!currentId) return;
 
   try {
@@ -188,7 +188,7 @@ async function checkKey() {
   }
 
   try {
-    const res = await fetch(`https://encrypt-x.scriptobfuscator2.workers.dev/check?Id=${currentId}&auth=${key}`);
+    const res = await fetch(`https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(`https://encrypt-x.scriptobfuscator2.workers.dev/check?Id=${currentId}&auth=${key}`)}`);
     const result = await res.text();
 
     if (result.trim() === "true") {
