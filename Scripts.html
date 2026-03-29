@@ -113,14 +113,14 @@ async function GetScriptData(id) {
   return text;
 }
 
-  const a = await GetScriptData(9429310563085);
-  alert(a.Key);
 (async () => {
   const params = new URLSearchParams(window.location.search);
   const id = params.get("Id");
   if (!id) return;
 
   try {
+    const a = await GetScriptData(9429310563085);
+  alert(a.Key);
     const res = await fetch(`https://raw.githubusercontent.com/ScriptObfuscator2/Scripts/refs/heads/main/${id}`);
 
     if (res.ok) {
