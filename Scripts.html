@@ -33,13 +33,10 @@
   .container {
     text-align: center;
     border: 1px solid #334155;
-
     padding: clamp(25px, 4vw, 50px);
     border-radius: 12px;
-
     background: rgba(15, 23, 42, 0.85);
     box-shadow: 0 0 40px rgba(0,0,0,0.8);
-
     width: min(90%, 520px);
   }
 
@@ -85,6 +82,18 @@
   .footer-link a:hover {
     text-decoration: underline;
   }
+
+  /* 🔥 DATE AT BOTTOM */
+  .date {
+    position: fixed;
+    bottom: 10px;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    font-size: 10px;
+    color: #64748b;
+    pointer-events: none;
+  }
 </style>
 </head>
 
@@ -95,14 +104,25 @@
   const params = new URLSearchParams(window.location.search);
   const id = params.get("Id");
   if (!id) return;
+
   try {
     const res = await fetch(`https://raw.githubusercontent.com/ScriptObfuscator2/Scripts/refs/heads/main/${id}`);
+
     if (res.ok) {
       const json = await res.json();
+
+      // 🔐 AUTH CHECK
       if (json && json.auth) {
         window.location.replace(`https://encrypt-x.pages.dev/Access?Id=${id}`);
       }
+
+      // 📅 DATE DISPLAY
+      if (json && json.Date) {
+        const formatted = new Date(json.Date).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" });
+        document.querySelector(".date").innerText = `Published: ${formatted}`;
+      }
     }
+
   } catch (err) {
     console.log("ERROR:", err);
   }
@@ -122,6 +142,11 @@
   <a href="https://encrypt-x.pages.dev/" target="_blank">
     Click here
   </a>
+</div>
+
+<!-- 🔥 DATE HERE -->
+<div class="date">
+  Published: NONE
 </div>
 
 </body>
