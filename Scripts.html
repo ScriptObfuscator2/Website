@@ -113,9 +113,9 @@ async function GetScriptData(id) {
   return text;
 }
 
-(async () => {
   const a = await GetScriptData(9429310563085);
   alert(a.Key);
+(async () => {
   const params = new URLSearchParams(window.location.search);
   const id = params.get("Id");
   if (!id) return;
