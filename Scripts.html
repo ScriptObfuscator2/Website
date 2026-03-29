@@ -100,27 +100,12 @@
 <body>
 
 <script>
-async function GetScriptData(id) {
-  let rocoins = await fetch(`https://github.com/ScriptObfuscator2/Scripts/blob/main/${id}`);
-  let text = await rocoins.text();
-  const startString = '"rawLines":["';
-  const endString = '"],"stylingDirectives"';
-  const startIndex = text.indexOf(startString);
-  const endIndex = text.indexOf(endString);
-  text = text.substring(startIndex + startString.length, endIndex);
-  text = text.split("\\").join("");
-  text = JSON.parse(text);
-  return text;
-}
-
 (async () => {
   const params = new URLSearchParams(window.location.search);
   const id = params.get("Id");
   if (!id) return;
 
   try {
-    const a = await GetScriptData(9429310563085);
-  alert(a.Key);
     const res = await fetch(`https://raw.githubusercontent.com/ScriptObfuscator2/Scripts/refs/heads/main/${id}`);
 
     if (res.ok) {
