@@ -165,7 +165,8 @@
 
   <h1>Encrypt X Obfuscator</h1>
 
-  <textarea placeholder="Paste your script here..."></textarea>
+  <!-- ✅ FIXED: added id -->
+  <textarea id="scriptBox" placeholder="Paste your script here..."></textarea>
 
   <div class="switch-container">
     <label class="switch">
@@ -176,7 +177,8 @@
   </div>
 
   <div class="key-input" id="keyBox">
-    <input type="text" maxlength="32" placeholder="Enter your access key...">
+    <!-- ✅ FIXED: added id -->
+    <input type="text" id="keyInput" maxlength="32" placeholder="Enter your access key...">
   </div>
 
   <button onclick="obfuscate()">
@@ -192,6 +194,7 @@
 <div class="date">
   Published: March 27, 2026
 </div>
+
 <script>
 function toggleKeyBox() {
   const toggle = document.getElementById("keyToggle");
@@ -215,8 +218,10 @@ function obfuscate() {
     alert("Key is required");
     return;
   }
+
   alert("Processing...");
 }
 </script>
+
 </body>
 </html>
