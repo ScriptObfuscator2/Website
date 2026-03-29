@@ -179,7 +179,7 @@
     <input type="text" maxlength="32" placeholder="Enter your access key...">
   </div>
 
-  <button onclick="alert('Obfuscation feature not connected yet')">
+  <button onclick="obfuscate()">
     Obfuscate
   </button>
 
@@ -192,15 +192,31 @@
 <div class="date">
   Published: March 27, 2026
 </div>
-
 <script>
 function toggleKeyBox() {
   const toggle = document.getElementById("keyToggle");
   const box = document.getElementById("keyBox");
-
   box.style.display = toggle.checked ? "block" : "none";
 }
-</script>
 
+function obfuscate() {
+  const script = document.getElementById("scriptBox").value;
+  const key = document.getElementById("keyInput").value;
+
+  console.log("Script:", script);
+  console.log("Key:", key);
+
+  if (!script) {
+    alert("Script is empty");
+    return;
+  }
+
+  if (document.getElementById("keyToggle").checked && !key) {
+    alert("Key is required");
+    return;
+  }
+  alert("Processing...");
+}
+</script>
 </body>
 </html>
