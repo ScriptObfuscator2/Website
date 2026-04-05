@@ -242,7 +242,8 @@ async function obfuscate() {
       })
     });
     const txt = await res.text();
-    alert(txt);
+    script.value = txt;
+    key.value = "";
   } catch (err) {
     alert(err);
   }
