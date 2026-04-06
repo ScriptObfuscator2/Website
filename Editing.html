@@ -148,10 +148,9 @@ async function GetScriptData(id) {
 async function UpdateScript(auth, script) {
   const params = new URLSearchParams(window.location.search);
   const scriptId = params.get("Id");
-  const key = params.get("auth");
-  if (!scriptId || !key) return;
+  if (!scriptId) return;
   try {
-    const res = await fetch(`https://encrypt-x.scriptobfuscator2.workers.dev/edit?Id=${scriptId}&auth=${key}`, {
+    const res = await fetch(`https://encrypt-x.scriptobfuscator2.workers.dev/edit?Id=${scriptId}&auth=${auth}`, {
       method: "PUT",
       headers: {"Content-Type":"application/json"},
       body: JSON.stringify({
@@ -219,7 +218,11 @@ async function saveFile() {
   console.log("Key:", key);
 
   const res = await UpdateScript(key, code);
-  alert(res || "Saved!");
+  if (res.status === 200) {
+     alert("Saved!");
+  } else {
+    alert(res);
+  }
 }
 </script>
 
