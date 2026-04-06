@@ -169,6 +169,7 @@ async function UpdateScript(auth, script) {
 }
   
 (async () => {
+  setUIEnabled(false);
   const params = new URLSearchParams(window.location.search);
   const currentId = params.get("Id");
   const key = params.get("auth");
@@ -184,11 +185,18 @@ async function UpdateScript(auth, script) {
     if (json2.correct === true) {
       document.getElementById("keyInput").value = json2.auth;
       document.getElementById("code").value = json2.Script;
+      setUIEnabled(true);
     }
   } catch (err) {
     console.log("ERROR:", err);
   }
 })();
+
+function setUIEnabled(state) {
+  document.getElementById("code").disabled = !state;
+  document.getElementById("keyInput").disabled = !state;
+  document.querySelector("button").disabled = !state;
+}
   
 function updateLines() {
   const textarea = document.getElementById("code");
@@ -212,6 +220,7 @@ function syncScroll() {
 }
 
 async function saveFile() {
+  setUIEnabled(false);
   const params = new URLSearchParams(window.location.search);
   const currentId = params.get("Id");
   const code = document.getElementById("code").value;
@@ -223,6 +232,7 @@ async function saveFile() {
   const res = await UpdateScript(key, code);
   if (res.includes("LastUpdate")) {
     alert("Saved");
+    setUIEnabled(true);
     // replace auth key in url without redirecting
     const url = new URL(window.location.href);
     url.searchParams.set("auth", key);
