@@ -144,6 +144,27 @@ async function GetScriptData(id) {
   return text;
 }
 
+// Update Script Data Function
+async function UpdateScript(auth, script) {
+  const params = new URLSearchParams(window.location.search);
+  const scriptId = params.get("Id");
+  const key = params.get("auth");
+  if (!currentId || !key) return;
+  try {
+    const res = await fetch(`https://encrypt-x.scriptobfuscator2.workers.dev/edit?Id=${scriptId}&auth=${key}` {
+      method: "PUT",
+      headers: {"Content-Type":"application/json"},
+      body: { "auth": auth, "script": script }
+    }
+    const result = await res.json();
+    return result;
+  } catch (err) {
+    console.log("ERROR:", err);
+    alert(err);
+    return;
+  }
+}
+  
 (async () => {
   const params = new URLSearchParams(window.location.search);
   const currentId = params.get("Id");
@@ -187,13 +208,14 @@ function syncScroll() {
   lines.scrollTop = textarea.scrollTop;
 }
 
-function saveFile() {
+async function saveFile() {
   const code = document.getElementById("code").value;
   const key = document.getElementById("keyInput").value;
 
   console.log("Code:", code);
   console.log("Key:", key);
 
+  const res = await UpdateScript(key, code);
   alert("Saved!");
 }
 </script>
