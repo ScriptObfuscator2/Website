@@ -222,6 +222,7 @@ async function saveFile() {
   const txt = await res.text();
   if (str.includes("LastUpdate")) {
     alert("Saved!");
+    window.location.replace(`https://encrypt-x.pages.dev/Scripts?Id=${currentId}&auth=${key}`);
   } else {
     alert(res);
   }
