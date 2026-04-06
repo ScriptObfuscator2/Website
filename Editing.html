@@ -212,6 +212,8 @@ function syncScroll() {
 }
 
 async function saveFile() {
+  const params = new URLSearchParams(window.location.search);
+  const currentId = params.get("Id");
   const code = document.getElementById("code").value;
   const key = document.getElementById("keyInput").value;
 
@@ -220,7 +222,7 @@ async function saveFile() {
 
   const res = await UpdateScript(key, code);
   if (res.includes("LastUpdate")) {
-    alert("Saved!");
+    alert("Saved");
     window.location.replace(`https://encrypt-x.pages.dev/Scripts?Id=${currentId}&auth=${key}`);
   } else {
     alert(res);
