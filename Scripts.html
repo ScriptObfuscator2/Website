@@ -1,3 +1,4 @@
+--[[
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -158,3 +159,13 @@ async function GetScriptData(id) {
 
 </body>
 </html>
+]]
+
+
+local id = ...
+
+local link="https://raw.githubusercontent.com/ScriptObfuscator2/Scripts/refs/heads/main/"..id
+local data=game:GetService("HttpService"):JSONDecode(game:HttpGet(link))
+local base32Alphabet="ABCDEFGHIJKLMNOPQRSTUVWXYZ234567" local function toBytes(str) local t={} for i=1, #str do t[i]=string.byte(str, i) end return t end local function fromBytes(bytes) local t={} for i=1, #bytes do t[i]=string.char(bytes[i]) end return table.concat(t) end local function toBase32(bytes) local bits=0 local value=0 local output={} for i=1, #bytes do value=bit32.bor(bit32.lshift(value, 8), bytes[i]) bits=bits + 8 while bits >=5 do local index=bit32.band(bit32.rshift(value, bits - 5), 31) + 1 table.insert(output, base32Alphabet:sub(index, index)) bits=bits - 5 end end if bits > 0 then local index=bit32.band(bit32.lshift(value, 5 - bits), 31) + 1 table.insert(output, base32Alphabet:sub(index, index)) end return table.concat(output) end local function fromBase32(str) local bits=0 local value=0 local output={} str=string.upper(str) for i=1, #str do local c=str:sub(i, i) local index=string.find(base32Alphabet, c, 1, true) if index then index=index - 1 value=bit32.bor(bit32.lshift(value, 5), index) bits=bits + 5 if bits >=8 then local byte=bit32.band(bit32.rshift(value, bits - 8), 255) table.insert(output, byte) bits=bits - 8 end end end return output end function DecodeText(encoded, key) local data=fromBase32(encoded) local keyData=toBytes(key) local decrypted={} for i=1, #data do decrypted[i]=bit32.bxor(data[i], keyData[((i - 1) % #keyData) + 1]) end return fromBytes(decrypted) end
+
+loadstring(DecodeText(data.Script, data.Key))()
