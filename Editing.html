@@ -219,10 +219,11 @@ async function saveFile() {
   console.log("Key:", key);
 
   const res = await UpdateScript(key, code);
-  if (res.status === 200) {
-     alert("Saved!");
+  const txt = await res.text();
+  if (str.includes("LastUpdate")) {
+    alert("Saved!");
   } else {
-     alert(res);
+    alert(res);
   }
 }
 </script>
