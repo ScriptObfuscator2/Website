@@ -196,7 +196,7 @@
 
   <!-- CUSTOM ID INPUT (UNDER SWITCH 2) -->
   <div class="key-input" id="customIdBox">
-    <input type="text" id="customIdInput" placeholder="Enter custom ID...">
+    <input type="text" id="customIdInput" maxlength="13" placeholder="Enter custom ID...">
   </div>
 
   <button onclick="obfuscate()">
@@ -295,11 +295,27 @@ async function obfuscate() {
   button.disabled = false;
   keyToggle.disabled = false;
   customToggle.disabled = false;
+  
+  // 🔄 RESET SWITCHES + CLEAR INPUTS + HIDE BOXES
+
+  keyToggle.checked = false;
+  customToggle.checked = false;
+
+  keyBox.style.display = "none";
+  customIdBox.style.display = "none";
+
+  key.value = "";
+  custom.value = "";
 }
 
 const keyInput = document.getElementById("keyInput");
 keyInput.addEventListener("input", () => {
   keyInput.value = keyInput.value.replace(/[^a-zA-Z0-9]/g, "");
+});
+
+const customInput = document.getElementById("customIdInput");
+customInput.addEventListener("input", () => {
+  customInput.value = customInput.value.replace(/[^a-zA-Z0-9]/g, "");
 });
 
 </script>
