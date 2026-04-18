@@ -58,9 +58,8 @@
     resize: none;
     outline: none;
 
-    /* 🔥 ADD THESE */
     overflow: auto;
-    white-space: pre;      /* prevents wrapping */
+    white-space: pre;
   }
 
   .switch-container {
@@ -170,9 +169,9 @@
 
   <h1>Encrypt X Obfuscator</h1>
 
-  <!-- ✅ FIXED: added id -->
   <textarea id="scriptBox" placeholder="Paste your script here..."></textarea>
 
+  <!-- SWITCH 1 -->
   <div class="switch-container">
     <label class="switch">
       <input type="checkbox" id="keyToggle" onchange="toggleKeyBox()">
@@ -181,9 +180,23 @@
     <span>Key (Enable Access)</span>
   </div>
 
+  <!-- KEY INPUT (NOW UNDER SWITCH 1) -->
   <div class="key-input" id="keyBox">
-    <!-- ✅ FIXED: added id -->
     <input type="text" id="keyInput" maxlength="32" placeholder="Enter your access key...">
+  </div>
+
+  <!-- SWITCH 2 -->
+  <div class="switch-container">
+    <label class="switch">
+      <input type="checkbox" id="customIdToggle" onchange="toggleCustomIdBox()">
+      <span class="slider"></span>
+    </label>
+    <span>Custom ID</span>
+  </div>
+
+  <!-- CUSTOM ID INPUT (UNDER SWITCH 2) -->
+  <div class="key-input" id="customIdBox">
+    <input type="text" id="customIdInput" placeholder="Enter custom ID...">
   </div>
 
   <button onclick="obfuscate()">
@@ -201,71 +214,94 @@
 </div>
 
 <script>
+
 function toggleKeyBox() {
   const toggle = document.getElementById("keyToggle");
   const box = document.getElementById("keyBox");
   box.style.display = toggle.checked ? "block" : "none";
 }
 
+function toggleCustomIdBox() {
+  const toggle = document.getElementById("customIdToggle");
+  const box = document.getElementById("customIdBox");
+  box.style.display = toggle.checked ? "block" : "none";
+}
+
 async function obfuscate() {
   const script = document.getElementById("scriptBox");
   const key = document.getElementById("keyInput");
+  const custom = document.getElementById("customIdInput");
+
   const button = document.querySelector("button");
-  const toggle = document.getElementById("keyToggle");
-  
+
+  const keyToggle = document.getElementById("keyToggle");
+  const customToggle = document.getElementById("customIdToggle");
+
   console.log("Script:", script.value);
   console.log("Key:", key.value);
+  console.log("Custom:", custom.value);
 
   if (!script.value) {
     alert("Script is empty");
     return;
   }
 
-  if (document.getElementById("keyToggle").checked && !key.value) {
+  if (keyToggle.checked && !key.value) {
     alert("Key is required");
     return;
   }
 
-  if (!document.getElementById("keyToggle").checked) {
+  if (!keyToggle.checked) {
     key.value = "";
   }
 
-  // 🔒 DISABLE ALL INPUTS
-  scriptBox.disabled = true;
-  keyInput.disabled = true;
+  if (!customToggle.checked) {
+    custom.value = "";
+  }
+
+  // 🔒 DISABLE EVERYTHING
+  script.disabled = true;
+  key.disabled = true;
+  custom.disabled = true;
   button.disabled = true;
-  toggle.disabled = true;
-  
+  keyToggle.disabled = true;
+  customToggle.disabled = true;
+
   try {
-    const res = await fetch("https://encrypt-x.scriptobfuscator2.workers.dev/obfuscate" + "?auth=" + key.value, {
+    const res = await fetch("https://encrypt-x.scriptobfuscator2.workers.dev/obfuscate" + "?auth=" + key.value + "&Id=" + custom.value, {
       method: "POST",
       headers: {
-       "Content-Type": "application/json"
+        "Content-Type": "application/json"
       },
       body: JSON.stringify({
         script: script.value
       })
     });
+
     const txt = await res.text();
     script.value = txt;
+
     key.value = "";
+    custom.value = "";
+
   } catch (err) {
     alert(err);
   }
-  
 
-  // 🔒 ENABLE ALL INPUTS
-  scriptBox.disabled = false;
-  keyInput.disabled = false;
+  // 🔓 ENABLE EVERYTHING BACK
+  script.disabled = false;
+  key.disabled = false;
+  custom.disabled = false;
   button.disabled = false;
-  toggle.disabled = false;
+  keyToggle.disabled = false;
+  customToggle.disabled = false;
 }
 
 const keyInput = document.getElementById("keyInput");
 keyInput.addEventListener("input", () => {
   keyInput.value = keyInput.value.replace(/[^a-zA-Z0-9]/g, "");
 });
-  
+
 </script>
 
 </body>
