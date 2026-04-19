@@ -267,6 +267,7 @@ async function obfuscate() {
   keyToggle.disabled = true;
   customToggle.disabled = true;
 
+  let txt
   try {
     const res = await fetch("https://encrypt-x.scriptobfuscator2.workers.dev/obfuscate" + "?auth=" + key.value + "&Id=" + custom.value, {
       method: "POST",
@@ -278,12 +279,15 @@ async function obfuscate() {
       })
     });
 
-    const txt = await res.text();
-    script.value = txt;
-
-    key.value = "";
-    custom.value = "";
-
+    txt = await res.text();
+    if (txt === "Script ID already exist!") {
+      alert(txt);
+    } else {
+      script.value = txt;
+      key.value = "";
+      custom.value = "";
+    }
+    
   } catch (err) {
     alert(err);
   }
@@ -296,8 +300,11 @@ async function obfuscate() {
   keyToggle.disabled = false;
   customToggle.disabled = false;
   
+  if (txt === "Script ID already exist!") {
+    return;
+  }
+  
   // 🔄 RESET SWITCHES + CLEAR INPUTS + HIDE BOXES
-
   keyToggle.checked = false;
   customToggle.checked = false;
 
