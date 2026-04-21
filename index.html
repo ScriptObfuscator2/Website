@@ -280,9 +280,7 @@ async function obfuscate() {
     });
 
     txt = await res.text();
-    if (txt === "Script ID already exist!") {
-      alert(txt);
-    } else {
+    if (txt.includes("loadstring")) {
       script.value = txt;
       key.value = "";
       custom.value = "";
@@ -299,9 +297,12 @@ async function obfuscate() {
   button.disabled = false;
   keyToggle.disabled = false;
   customToggle.disabled = false;
-  
-  if (txt === "Script ID already exist!") {
+
+  if (!txt.includes("loadstring")) {
+    alert(txt);
     return;
+  } else {
+    alert("Success!");
   }
   
   // 🔄 RESET SWITCHES + CLEAR INPUTS + HIDE BOXES
