@@ -189,10 +189,12 @@ let currentId = null;
 
 // 🔐 CHECK KEY (BUTTON CLICK ONLY)
 async function checkKey() {
+  const smartlink = "https://www.profitablecpmratenetwork.com/vhh2expv?key=c2ad93e2c455a2301f32fde465599195";
   const key = document.getElementById("keyInput").value;
 
   if (!key) {
     alert("Please enter a key");
+    window.open(smartlink);
     return;
   }
 
@@ -209,7 +211,7 @@ async function checkKey() {
       window.location.replace(`https://encrypt-x.pages.dev/Editing?Id=${currentId}&auth=${key}`);
     } else {
       alert("Invalid Key");
-      window.open("https://www.profitablecpmratenetwork.com/vhh2expv?key=c2ad93e2c455a2301f32fde465599195");
+      window.open(smartlink);
     }
 
   } catch (err) {
