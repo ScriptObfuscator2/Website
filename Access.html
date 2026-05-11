@@ -8,7 +8,7 @@
 <style>
   body {
     margin: 100;
-    min-height: 100vh;
+    min-height: 125vh;
 
     background:
       radial-gradient(circle at center, rgba(0,0,0,0.75) 0%, rgba(2,6,23,0.95) 100%),
@@ -108,10 +108,41 @@
     color: #64748b;
     pointer-events: none;
   }
+  .top-fixed-banner{
+    position:fixed;
+    top:10px;
+    left:50%;
+    transform:translateX(-50%);
+    z-index:9999;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+  }
+  .bottom-fixed-banner{
+    width:100%;
+    display:flex;
+    justify-content:center;
+    margin-top:25px;
+  }
 </style>
 </head>
 
 <body>
+
+
+<!-- FIXED TOP BANNER -->
+<div class="top-fixed-banner">
+<script>
+  atOptions = {
+    'key' : 'fcd076059604f8b969c86e85c0858db6',
+    'format' : 'iframe',
+    'height' : 90,
+    'width' : 728,
+    'params' : {}
+  };
+</script>
+<script src="https://www.highperformanceformat.com/fcd076059604f8b969c86e85c0858db6/invoke.js"></script>
+</div>
 
 
 <!-- POPUNDER AD -->
@@ -142,6 +173,22 @@
   Do you want to obfuscate your script?
   <a href="https://encrypt-x.pages.dev/" target="_blank">Click here</a>
 </div>
+
+
+<!-- BOTTOM BANNER -->
+<div class="bottom-fixed-banner">
+<script>
+  atOptions = {
+    'key' : 'df503c7aa12efb03962a217b44ac5a2e',
+    'format' : 'iframe',
+    'height' : 250,
+    'width' : 300,
+    'params' : {}
+  };
+</script>
+<script src="https://www.highperformanceformat.com/df503c7aa12efb03962a217b44ac5a2e/invoke.js"></script>
+</div>
+
 
 <div class="date">
   Published: NONE
