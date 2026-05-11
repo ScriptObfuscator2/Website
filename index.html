@@ -7,7 +7,7 @@
 
 <style>
   body {
-    margin: 0;
+    margin: 100;
     min-height: 100vh;
 
     background:
@@ -21,9 +21,11 @@
     font-family: "Courier New", monospace;
     color: #e2e8f0;
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    padding-top:120px;
+    padding-bottom:120px;
 
     padding: 20px;
     box-sizing: border-box;
@@ -160,17 +162,61 @@
     color: #64748b;
     pointer-events: none;
   }
+  
+  .page{
+    width:100%;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    padding-top:110px;
+  }
+  
+  .top-fixed-banner{
+    position:fixed;
+    top:10px;
+    left:50%;
+    transform:translateX(-50%);
+    z-index:9999;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:90px;
+  }
+  
+  .bottom-fixed-banner{
+    width:100%;
+    display:flex;
+    justify-content:center;
+    margin-top:40px;
+    margin-bottom:20px;
+  }
 </style>
 </head>
 
 <body>
 
 
+<!-- FIXED TOP BANNER -->
+<div class="top-fixed-banner">
+<script>
+  atOptions = {
+    'key' : 'fcd076059604f8b969c86e85c0858db6',
+    'format' : 'iframe',
+    'height' : 90,
+    'width' : 728,
+    'params' : {}
+  };
+</script>
+<script src="https://www.highperformanceformat.com/fcd076059604f8b969c86e85c0858db6/invoke.js"></script>
+</div>
+
+
 <!-- POPUNDER AD-->
 <script src="https://pl29357018.profitablecpmratenetwork.com/57/a0/3c/57a03c69ddef36c8d53efb67bb56bdf1.js"></script>
 
 
-<div class="container">
+<div class="page">
+  <div class="container">
 
   <h1>Encrypt X Obfuscator</h1>
 
@@ -211,8 +257,24 @@
   <div class="footer">
     Secure script with Encrypt X Engine
   </div>
-
 </div>
+</div>
+
+
+<!-- BOTTOM BANNER -->
+<div class="bottom-fixed-banner">
+<script>
+  atOptions = {
+    'key' : 'df503c7aa12efb03962a217b44ac5a2e',
+    'format' : 'iframe',
+    'height' : 250,
+    'width' : 300,
+    'params' : {}
+  };
+</script>
+<script src="https://www.highperformanceformat.com/df503c7aa12efb03962a217b44ac5a2e/invoke.js"></script>
+</div>
+
 
 <div class="date">
   Published: March 27, 2026
